@@ -1,31 +1,34 @@
 <template>
   <v-form ref="checkForm">
-    <v-text-field
-      v-model="blog.title"
-      label="Title"
-      :rules="[required('Title')]"
-    ></v-text-field>
-    <v-textarea
-      v-model="blog.body"
-      label="Body"
-      :rules="[required('Body')]"
-    ></v-textarea>
-
+    <Form
+      v-bind.sync="blog"
+    />
     <v-btn class="mr-4" @click="onSubmit">Create</v-btn>
   </v-form>
 </template>
 
 <script>
+import Form from '@/components/Form.vue'
 export default {
+  components: {
+    Form
+  },
   data() {
     return {
-      blog: {},
-      required(propertyType) {
-        return v => v && v.length > 0 || `You must input a ${propertyType}`
-      }
+      blog: {
+        title: '',
+        body: ''
+      },
+      // required(propertyType) {
+      //   return v => v && v.length > 0 || `You must input a ${propertyType}`
+      // }
     }
   },
   methods: {
+    parentReceiveData(value) {
+      // 子供側のコンポーネントの$emitで呼び出されるメソッド
+      this.blog = value;
+    },
     async onSubmit() {
       if (this.$refs.checkForm.validate()) {
         const blog = await this.$store.dispatch('addBlog', this.blog)
