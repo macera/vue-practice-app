@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import Blogs from '../views/Blogs.vue'
 import Blog from '../views/Blog.vue'
 import EditBlog from '../views/EditBlog.vue'
-
+import Amounts from '../views/Amounts.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,6 +29,11 @@ const routes = [
     name: 'edit-blog',
     component: EditBlog,
     params: true
+  },
+  {
+    path: '/amounts',
+    name: 'amounts',
+    component: Amounts
   }
 ]
 
