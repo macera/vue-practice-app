@@ -31,11 +31,6 @@ export default {
   components: {
     Form
   },
-  methods: {
-    deleteForm (index) {
-      this.forms.splice(index, 1)
-    },
-  },
   data() {
     return {
       expenses: [],

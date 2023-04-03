@@ -19,13 +19,13 @@
       <tbody>
         <tr v-for="(form, index) in forms" :key="index">
           <td>
-            <input v-model="form.group" class="form-control" @input="$emit('update:forms[{{ index }].group', $event)" />
+            <input v-model="form.group" class="form-control" @input="$emit('update:forms.group', $event)" />
           </td>
           <td>
-            <input v-model="form.title" class="form-control" @input="$emit('update:forms[{{ index }].title', $event)" />
+            <input v-model="form.title" class="form-control" @input="$emit('update:forms.title', $event)" />
           </td>
           <td>
-            <input v-model.number="form.amount" class="form-control" @input="$emit('update:forms[{{ index }}].amount', $event)" />
+            <input v-model.number="form.amount" class="form-control" @input="$emit('update:forms.amount', $event)" />
           </td>
           <td align="right">
             <button @click="deleteForm(index)" class="btn btn-danger">×</button>
