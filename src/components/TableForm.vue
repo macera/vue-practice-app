@@ -28,11 +28,11 @@
             <input v-model.number="form.amount" class="form-control" @input="$emit('update:forms[{{ index }}].amount', $event)" />
           </td>
           <td align="right">
-            <button @click="deleteForm(index)"class="btn btn-danger">×</button>
+            <button @click="deleteForm(index)" class="btn btn-danger">×</button>
           </td>
         </tr>
         <tr>
-          <td colspan="4"　align="right">
+          <td colspan="4" align="right">
             <button @click="addForm()" class="btn btn-primary">追加</button>
           </td>
         </tr>
@@ -59,10 +59,10 @@ export default {
   ],
   methods: {
     addForm () {
-      this.forms.push({group: '', title: '', amount: ''})
+      this.$emit("addForm", {group: '', title: '', amount: ''});
     },
     deleteForm (index) {
-      this.forms.splice(index, 1)
+      this.$emit("deleteForm", index);
     },
   },
   computed: {
@@ -76,7 +76,7 @@ export default {
       return total
     },
     calcGroups() {
-      var groups = this.forms.map(form => form.group);
+      //var groups = this.forms.map(form => form.group);
       return this.forms.reduce((result, form) => {
         const { group } = form;
         result[group] = result[group] ?? [];

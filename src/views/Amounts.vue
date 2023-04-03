@@ -7,6 +7,8 @@
         <h2>支出</h2>
         <Form
           :forms.sync="expenses"
+          @addForm = "expenses.push($event)"
+          @deleteForm="expenses.splice($event, 1)"
           @calcTotal='totalExpenseAmount = $event'
         />
       </v-col>
@@ -14,6 +16,8 @@
         <h2>収入</h2>
         <Form
           :forms.sync="incomes"
+          @addForm = "incomes.push($event)"
+          @deleteForm="incomes.splice($event, 1)"
           @calcTotal='totalIncomeAmount = $event'
         />
       </v-col>
@@ -26,6 +30,11 @@ import Form from '@/components/TableForm.vue'
 export default {
   components: {
     Form
+  },
+  methods: {
+    deleteForm (index) {
+      this.forms.splice(index, 1)
+    },
   },
   data() {
     return {
