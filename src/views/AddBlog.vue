@@ -18,17 +18,10 @@ export default {
       blog: {
         title: '',
         body: ''
-      },
-      // required(propertyType) {
-      //   return v => v && v.length > 0 || `You must input a ${propertyType}`
-      // }
+      }
     }
   },
   methods: {
-    parentReceiveData(value) {
-      // 子供側のコンポーネントの$emitで呼び出されるメソッド
-      this.blog = value;
-    },
     async onSubmit() {
       if (this.$refs.checkForm.validate()) {
         const blog = await this.$store.dispatch('addBlog', this.blog)

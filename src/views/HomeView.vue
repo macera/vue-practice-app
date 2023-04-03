@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Welcome to Blog App !</h1>
+    <h1>Welcome to Training App !</h1>
     <p><router-link to="/blogs">blog</router-link></p>
     <p><router-link to="/amounts">amount</router-link></p>
   </div>
@@ -9,7 +9,6 @@
 <script>
 
   export default {
-
     components: {
     },
   }

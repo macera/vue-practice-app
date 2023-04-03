@@ -6,17 +6,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    blogs: [],//④
+    blogs: [],
     flash_message: {
       status: false,
       message: ''
     }
   },
   mutations: {
-    FETCH_BLOGS(state, blogs) {//③
+    FETCH_BLOGS(state, blogs) {
       state.blogs = blogs
     },
-    ADD_BLOG(state, blog) { //③第一引数はstate、第二引数は②でコミットされたsavedBlogが渡ってくる
+    ADD_BLOG(state, blog) { //第一引数はstate、第二引数は②でコミットされたsavedBlogが渡ってくる
       const blogs = state.blogs.concat(blog)
       state.blogs = blogs
     },
@@ -27,27 +27,27 @@ export default new Vuex.Store({
         }
       })
     },
-    DELETE_BLOG(state, blogId) { //②
+    DELETE_BLOG(state, blogId) {
       const blogs = state.blogs.filter(b => b.id != blogId)
       state.blogs = blogs
     },
-    setMessage(state, payload) { // 追加
+    setMessage(state, payload) {
       state.flash_message = payload
     }
   },
 
   actions: {
-    async fetchBlogs({ commit }) {//①
+    async fetchBlogs({ commit }) {
       await axios().get('/blogs')
         .then(res => {
-          commit('FETCH_BLOGS', res.data)//②
+          commit('FETCH_BLOGS', res.data)
         })
         .catch(e => console.log(e))
     },
-    async addBlog({ commit }, blog) { //① 、第二引数blogに先ほどのthis.blogが入る
+    async addBlog({ commit }, blog) { //第二引数blogに先ほどのthis.blogが入る
       const res = await axios().post('/blogs', blog)
       const savedBlog = res.data
-      commit('ADD_BLOG', savedBlog) // ②
+      commit('ADD_BLOG', savedBlog)
       return savedBlog
     },
     async editBlog({ commit }, blog) {
@@ -56,7 +56,7 @@ export default new Vuex.Store({
       commit('EDIT_BLOG', editedBlog)
       return editedBlog
     },
-    async deleteBlog({ commit }, blog) { //①
+    async deleteBlog({ commit }, blog) {
       await axios().delete(`/blogs/${blog.id}`, blog)
       commit('DELETE_BLOG', blog.id)
     }

@@ -12,9 +12,9 @@
             <th>Title</th>
             <th>Description</th>
           </tr>
-          <tr v-for="blog in blogs" :key="blog.id">  <!-- 変更 ③-->
-            <td>{{ blog.title }}</td> <!-- 変更 ④-->
-            <td>{{ blog.body }}</td> <!-- 変更 ④-->
+          <tr v-for="blog in blogs" :key="blog.id">
+            <td>{{ blog.title }}</td>
+            <td>{{ blog.body }}</td>
             <td><router-link :to="{ name: 'show-blog', params: { id: blog.id }}">show</router-link></td>
             <td><router-link :to="{ name: 'edit-blog', params: { id: blog.id }}">edit</router-link></td>
             <td><span class="button_link" @click="deleteBlog(blog)">[ delete ]</span></td>
@@ -29,12 +29,13 @@
 import { mapState } from 'vuex'
 import AddBlog from './AddBlog'
 import Flash from '@/components/Flash.vue'
+
 export default {
   components: {
     AddBlog,
     Flash
   },
-  computed: { //変更 ②
+  computed: {
     ...mapState(['blogs'])
   },
   data() {

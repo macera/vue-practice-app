@@ -1,7 +1,7 @@
 <template>
   <div>
     <Flash />
-    <p>Title: {{ blog.title }}</p>  <!-- ④ -->
+    <p>Title: {{ blog.title }}</p>
     <p>Body: {{ blog.body }}</p>
     <router-link :to="{ name: 'edit-blog', params: { id: blog.id }}">Edit</router-link> | <router-link to="/blogs">Back</router-link>
   </div>
@@ -16,8 +16,8 @@ export default {
     Flash
   },
   computed: {
-    ...mapState(['blogs']), // ②
-    blog() { // ③
+    ...mapState(['blogs']),
+    blog() {
       return this.blogs.find(blogId => blogId.id === this.$route.params.id) || {}
     }
   }
